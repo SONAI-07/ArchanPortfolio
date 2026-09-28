@@ -10,11 +10,11 @@ export const profileData = {
 };
 
 export const contactLinks = [
-    { name: "GitHub", href: "https://github.com/", icon: "github" },
-    { name: "LinkedIn", href: "https://linkedin.com/", icon: "linkedin" },
-    { name: "X/Twitter", href: "https://twitter.com/", icon: "X" },
-    { name: "Mail", href: "mailto:hello@example.com", icon: "mail" },
-    { name: "Threads", href: "https://threads.net/", icon: "threads" },
+    { name: "GitHub", href: "https://github.com/SONAI-07", icon: "github" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/archan-banerjee-b5793521b/", icon: "linkedin" },
+    { name: "X/Twitter", href: "https://x.com/ArchanPsioppen", icon: "X" },
+    { name: "Mail", href: "mailto:sonaibanerjee571@gmail.com", icon: "mail" },
+
 ];
 
 export const projects = [
@@ -52,3 +52,39 @@ export const experience = {
         { value: "300+", label: "GITHUB COMMITS" },
     ]
 };
+
+export type SkillCategory = "Languages" | "Frontend" | "Backend" | "Databases" | "AI / ML" | "DevOps";
+
+export const skills: { name: string; category: SkillCategory }[] = [
+    { name: "Python", category: "Languages" },
+    { name: "Java", category: "Languages" },
+    { name: "TypeScript", category: "Languages" },
+    { name: "SQL", category: "Languages" },
+    { name: "React", category: "Frontend" },
+    { name: "Figma", category: "Frontend" },
+    { name: "FastAPI", category: "Backend" },
+    { name: "SpringBoot", category: "Backend" },
+    { name: "REST APIs", category: "Backend" },
+    { name: "WebSocket", category: "Backend" },
+    { name: "JWT", category: "Backend" },
+    { name: "PostgreSQL", category: "Databases" },
+    { name: "MongoDB", category: "Databases" },
+    { name: "MySQL", category: "Databases" },
+    { name: "Supabase", category: "Databases" },
+    { name: "Firebase", category: "Databases" },
+    { name: "Hibernate", category: "Databases" },
+    { name: "SQLAlchemy", category: "Databases" },
+    { name: "LangChain", category: "AI / ML" },
+    { name: "LangGraph", category: "AI / ML" },
+    { name: "RAG", category: "AI / ML" },
+    { name: "Vector Embeddings", category: "AI / ML" },
+    { name: "Pinecone", category: "AI / ML" },
+    { name: "Qdrant", category: "AI / ML" },
+    { name: "Hugging Face", category: "AI / ML" },
+    { name: "Pydantic", category: "AI / ML" },
+    { name: "n8n", category: "AI / ML" },
+    { name: "Docker", category: "DevOps" },
+    { name: "AWS", category: "DevOps" },
+    { name: "Git", category: "DevOps" },
+
+];

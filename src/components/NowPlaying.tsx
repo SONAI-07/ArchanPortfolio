@@ -2,13 +2,14 @@
 import { useRef, useState, useEffect } from "react";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
 
-const DUR = 455;
-const fmt = (s: number) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+const fmt = (s: number) =>
+    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 
 export function NowPlaying() {
     const a = useRef<HTMLAudioElement>(null);
     const [playing, setPlaying] = useState(false);
-    const [cur, setCur] = useState(81);
+    const [cur, setCur] = useState(0);
+    const [dur, setDur] = useState(0); // real duration, read from the audio file itself
 
     useEffect(() => {
         let id = 0;
@@ -23,25 +24,31 @@ export function NowPlaying() {
     const toggle = () => {
         const el = a.current;
         if (!el) return;
-        if (playing) {
-            el.pause();
-        } else {
-            if(el.src) el.play().catch(e => console.log("Audio play failed:", e));
-        }
+        if (playing) el.pause();
+        else el.play().catch((e) => console.log("Audio play failed:", e));
         setPlaying(!playing);
     };
 
     const seek = (f: number) => {
         const el = a.current;
-        if (!el) return;
-        el.currentTime = Math.max(0, Math.min(DUR, cur + f));
+        if (!el || !dur) return;
+        el.currentTime = Math.max(0, Math.min(dur, el.currentTime + f));
+        setCur(el.currentTime);
     };
+
+    const progress = dur ? (cur / dur) * 100 : 0;
 
     return (
         <div className="flex items-center gap-5 rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5 mt-8 max-w-2xl">
-            {/* Note: Drop a file named 'music.mp3' into your 'public' folder later to hear sound! */}
-            <audio ref={a} src="/music.mp3" onEnded={() => setPlaying(false)} preload="metadata" />
+            <audio
+                ref={a}
+                src="/music.mp3"
+                onEnded={() => { setPlaying(false); setCur(0); }}
+                onLoadedMetadata={(e) => setDur(e.currentTarget.duration)}
+                preload="metadata"
+            />
 
+            {/* Vinyl */}
             <div className="relative h-20 w-20 shrink-0 md:h-24 md:w-24">
                 <div
                     className={`h-full w-full rounded-full border border-[var(--border)] bg-[radial-gradient(circle,var(--bg-elev)_18%,var(--panel)_19%)] shadow-inner ${playing ? "animate-[spin_4s_linear_infinite]" : ""}`}
@@ -53,20 +60,22 @@ export function NowPlaying() {
                 />
             </div>
 
+            {/* Track info + progress */}
             <div className="min-w-0 flex-1">
                 <p className="font-mono text-[10px] tracking-[.2em] text-[var(--muted)]">NOW PLAYING</p>
-                <p className="truncate text-sm font-medium text-[var(--ink)]">La Campanella ( 1826 )</p>
-                <p className="font-mono text-xs text-[var(--muted)]">Niccolò Paganini</p>
+                <p className="truncate text-sm font-medium text-[var(--ink)]">Adventure of a Lifetime</p>
+                <p className="font-mono text-xs text-[var(--muted)]">Coldplay</p>
 
                 <div className="mt-3 h-[3px] w-full rounded bg-[var(--border)]">
-                    <div className="h-full rounded bg-[var(--ink)] transition-all duration-100" style={{ width: `${(cur / DUR) * 100}%` }} />
+                    <div className="h-full rounded bg-[var(--ink)] transition-all duration-100" style={{ width: `${progress}%` }} />
                 </div>
                 <div className="mt-1 flex justify-between font-mono text-[10px] text-[var(--muted)]">
                     <span>{fmt(cur)}</span>
-                    <span>{fmt(DUR)}</span>
+                    <span>{dur ? fmt(dur) : "--:--"}</span>
                 </div>
             </div>
 
+            {/* Controls */}
             <div className="flex items-center gap-2 md:gap-3">
                 <button onClick={() => seek(-15)} className="text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors">
                     <SkipBack size={16} />
