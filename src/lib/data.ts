@@ -1,6 +1,7 @@
 export const profileData = {
     name: "Archan Banerjee",
 
+    education: "NIT Hamirpur",
     location: "India",
     roles: ["Open Source Contributor", "AI Developer", "Full Stack Developer", "Backend Engineer"],
     aboutBullets: [

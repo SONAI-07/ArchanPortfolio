@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+/* ---------- DARK = the video's exact monochrome ---------- */
+:root, [data-theme="dark"] {
+  --bg:        #0a0a0a;   /* page */
+  --bg-elev:   #101010;   /* cards / modal */
+  --panel:     #0e0e0e;   /* inset blocks */
+  --border:    #232323;   /* hairlines + dashed rails */
+  --hatch:     #161616;   /* diagonal stripe bands */
+  --ink:       #ededed;   /* primary text */
+  --ink-soft:  #b9b9b9;   /* body paragraphs */
+  --muted:     #6b6b6b;   /* INDEX, timestamps, phonetics */
+  --accent:    #ededed;   /* monochrome: accent == ink */
+  --img-filter: grayscale(1) contrast(1.04);
+
+  /* semantic pops that STAY in both themes */
+  --ok:        #3fb950;   /* green status dot in footer */
+  --rec:       #e0473e;   /* red ● REC in viewfinder */
+
+  /* shadcn/ui required variables mapped to our tokens */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--bg-elev);
+  --card-foreground: var(--ink);
+  --popover: var(--bg-elev);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--bg);
+  --secondary: var(--panel);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: var(--muted);
+  --accent-foreground: var(--bg);
+  --border-color: var(--border);
+  --input: var(--border);
+  --ring: var(--muted);
+  --radius: 0.5rem;
+}
+
+/* ---------- LIGHT = YOUR CREAM / OFF-WHITE (the tweak) ---------- */
+[data-theme="light"] {
+  --bg:        #f7f1e4;   /* warm cream page — NOT #fff */
+  --bg-elev:   #fdfaf2;   /* cards: near-white but warm, soft on eyes */
+  --panel:     #efe6d4;   /* inset blocks */
+  --border:    #ddcfb4;   /* warm hairline / dashed rails */
+  --hatch:     #e9dfca;   /* stripe bands tinted cream */
+  --ink:       #221b10;   /* warm near-black text (AA on cream) */
+  --ink-soft:  #4f4634;
+  --muted:     #8c7f66;
+  --accent:    #221b10;   /* keep monochrome ethos: no colored accent */
+  --img-filter: grayscale(1) sepia(.14) contrast(.97) brightness(1.02);
+  --ok:        #2f8f4e;
+  --rec:       #c0392b;
+
+  /* shadcn/ui overrides for light mode */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--bg-elev);
+  --card-foreground: var(--ink);
+  --popover: var(--bg-elev);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--bg);
+  --secondary: var(--panel);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: var(--muted);
+  --accent-foreground: var(--bg);
+  --border-color: var(--border);
+  --input: var(--border);
+  --ring: var(--muted);
+}
+
+@layer base {
+  html, body { overflow-x: clip; }
+  html {
+    background-color: var(--bg);
+    color: var(--ink);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--bg);
+  }
+}
+
+/* ---------- the recurring visual motifs from the video ---------- */
+@utility rail-left  { border-left: 1px dashed var(--border); }
+@utility rail-right { border-right: 1px dashed var(--border); }
+
+/* diagonal hatch band that sits behind each section header row */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+          -45deg, var(--hatch) 0 1px, transparent 1px 7px);
+}
+
+/* mono pill / tag */
+@utility pill {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .02em;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 9px;
+  color: var(--ink-soft);
+  background: var(--panel);
+}
+
+/* serif display (name + section titles) */
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+/* images: monochrome in dark, WARM-harmonised in light */
+@utility img-mono { filter: var(--img-filter); }
