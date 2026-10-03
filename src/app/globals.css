@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
-/* ---------- DARK = the video's exact monochrome ---------- */
+/* ---------- DARK ---------- */
 :root, [data-theme="dark"] {
-  --bg:        #0a0a0a;   /* page */
-  --bg-elev:   #101010;   /* cards / modal */
-  --panel:     #0e0e0e;   /* inset blocks */
-  --border:    #232323;   /* hairlines + dashed rails */
-  --hatch:     #161616;   /* diagonal stripe bands */
-  --ink:       #ededed;   /* primary text */
-  --ink-soft:  #b9b9b9;   /* body paragraphs */
-  --muted:     #6b6b6b;   /* INDEX, timestamps, phonetics */
-  --accent:    #ededed;   /* monochrome: accent == ink */
+  --bg:        #0a0a0a;
+  --bg-elev:   #101010;
+  --panel:     #0e0e0e;
+  --border:    #232323;
+  --hatch:     #161616;
+  --ink:       #ededed;
+  --ink-soft:  #b9b9b9;
+  --muted:     #6b6b6b;
+  --accent:    #ededed;
   --img-filter: grayscale(1) contrast(1.04);
+  --ok:        #3fb950;
+  --rec:       #e0473e;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --texture-op: 0.05;
+  --glow: rgba(237, 237, 237, 0.045);
 
-  /* semantic pops that STAY in both themes */
-  --ok:        #3fb950;   /* green status dot in footer */
-  --rec:       #e0473e;   /* red ● REC in viewfinder */
-
-  /* shadcn/ui required variables mapped to our tokens */
   --background: var(--bg);
   --foreground: var(--ink);
   --card: var(--bg-elev);
@@ -36,22 +37,25 @@
   --radius: 0.5rem;
 }
 
-/* ---------- LIGHT = YOUR CREAM / OFF-WHITE (the tweak) ---------- */
+/* ---------- LIGHT = YOUR CREAM ---------- */
 [data-theme="light"] {
-  --bg:        #f7f1e4;   /* warm cream page — NOT #fff */
-  --bg-elev:   #fdfaf2;   /* cards: near-white but warm, soft on eyes */
-  --panel:     #efe6d4;   /* inset blocks */
-  --border:    #ddcfb4;   /* warm hairline / dashed rails */
-  --hatch:     #e9dfca;   /* stripe bands tinted cream */
-  --ink:       #221b10;   /* warm near-black text (AA on cream) */
+  --bg:        #f7f1e4;
+  --bg-elev:   #fdfaf2;
+  --panel:     #efe6d4;
+  --border:    #ddcfb4;
+  --hatch:     #e9dfca;
+  --ink:       #221b10;
   --ink-soft:  #4f4634;
   --muted:     #8c7f66;
-  --accent:    #221b10;   /* keep monochrome ethos: no colored accent */
+  --accent:    #221b10;
   --img-filter: grayscale(1) sepia(.14) contrast(.97) brightness(1.02);
   --ok:        #2f8f4e;
   --rec:       #c0392b;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --texture-op: 0.06;
+  --glow: rgba(34, 27, 16, 0.05);
 
-  /* shadcn/ui overrides for light mode */
   --background: var(--bg);
   --foreground: var(--ink);
   --card: var(--bg-elev);
@@ -71,49 +75,107 @@
 
 @layer base {
   html, body { overflow-x: clip; }
-  html {
-    background-color: var(--bg);
-    color: var(--ink);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  html { background: var(--bg); color: var(--ink); transition: background-color .3s ease, color .3s ease; }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+  /* marble grain — never flat black again */
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    opacity: var(--texture-op);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.007 0.005' numOctaves='3' seed='11'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  body {
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
+  /* studio-light vignette from the top */
+  body::after {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(70% 45% at 50% 0%, var(--glow), transparent 70%);
   }
-  ::selection {
-    background: var(--ink);
-    color: var(--bg);
-  }
+
+  ::selection { background: var(--ink); color: var(--bg); }
 }
 
-/* ---------- the recurring visual motifs from the video ---------- */
+/* ---------- legacy utilities (retire in Phase 8) ---------- */
 @utility rail-left  { border-left: 1px dashed var(--border); }
 @utility rail-right { border-right: 1px dashed var(--border); }
-
-/* diagonal hatch band that sits behind each section header row */
 @utility hatch {
-  background-image: repeating-linear-gradient(
-          -45deg, var(--hatch) 0 1px, transparent 1px 7px);
+  background-image: repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 7px);
 }
-
-/* mono pill / tag */
 @utility pill {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: .02em;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 4px 9px;
-  color: var(--ink-soft);
-  background: var(--panel);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .02em;
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 4px 9px; color: var(--ink-soft); background: var(--panel);
 }
-
-/* serif display (name + section titles) */
-@utility display {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: -.01em;
-}
-
-/* images: monochrome in dark, WARM-harmonised in light */
+@utility display { font-family: var(--font-serif); font-weight: 600; letter-spacing: -.01em; }
 @utility img-mono { filter: var(--img-filter); }
+
+/* ---------- HYBRID GRAMMAR ---------- */
+@utility card {
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  border-radius: var(--radius-card);
+}
+
+@utility btn-pill {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: var(--radius-pill); padding: 11px 22px;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  background: var(--ink); color: var(--bg);
+  transition: opacity .2s ease, transform .2s ease;
+  &:hover { opacity: .88; transform: translateY(-1px); }
+}
+
+@utility btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: var(--radius-pill); padding: 10px 20px;
+  font-family: var(--font-sans); font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border); color: var(--ink-soft); background: transparent;
+  transition: color .2s ease, border-color .2s ease;
+  &:hover { color: var(--ink); border-color: var(--muted); }
+}
+
+@utility chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); border-radius: var(--radius-pill);
+  padding: 8px 14px; font-family: var(--font-mono); font-size: 11px;
+  color: var(--ink-soft); background: var(--bg-elev);
+  transition: color .2s ease, border-color .2s ease;
+  &:hover { color: var(--ink); border-color: var(--muted); }
+}
+
+@utility micro {
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
+}
+
+@utility section-title {
+  font-family: var(--font-serif); font-weight: 500; letter-spacing: -.01em;
+  font-size: clamp(28px, 4vw, 42px); text-align: center; color: var(--ink);
+}
+
+/* the demoted hatch: a thin textured underline, used once per title */
+@utility title-underline {
+  width: 76px; height: 6px; margin: 12px auto 0; border-radius: 2px; opacity: .45;
+  background-image: repeating-linear-gradient(-45deg, var(--muted) 0 1px, transparent 1px 5px);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@utility marquee-track {
+  animation: marquee 30s linear infinite;
+  &:hover { animation-play-state: paused; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ---------- hero starfield ---------- */
+.hero-video { opacity: 0.75; }
+[data-theme="light"] .hero-video { filter: invert(1); opacity: 0.55; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { display: none; }
+}
