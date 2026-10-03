@@ -26,7 +26,18 @@ export function ProjectsGrid() {
                     {featured.map((project) => (
                         <div key={project.id} className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--panel)] transition-colors hover:border-[var(--ink-soft)]">
                             <div className="relative aspect-[16/10] overflow-hidden bg-[var(--bg-elev)]">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--panel),var(--bg-elev))] opacity-50"></div>
+                                {/* THE IMAGE LOGIC IS HERE */}
+                                {project.image ? (
+                                    <img
+                                        src={project.image}
+                                        alt={`${project.title} preview`}
+                                        className="img-mono absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--panel),var(--bg-elev))] opacity-50"></div>
+                                )}
+
+                                {/* THE VIEWFINDER OVERLAY */}
                                 <div className="pointer-events-none absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                     <div className="absolute left-3 top-3 z-10 flex items-center gap-2 font-mono text-[10px] text-white">
                                         <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--rec)]"></span> REC
@@ -61,6 +72,7 @@ export function ProjectsGrid() {
                 </div>
             </SectionBody>
 
+            {/* MODAL LOGIC */}
             <AnimatePresence>
                 {isModalOpen && (
                     <motion.div

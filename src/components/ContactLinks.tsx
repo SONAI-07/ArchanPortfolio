@@ -18,7 +18,7 @@ export function ContactLinks() {
     return (
         <section id="contact">
             <SectionHeader title="Contact" />
-            <div className="grid grid-cols-1 divide-y divide-[var(--border)] border-b border-[var(--border)] md:grid-cols-5 md:divide-x md:divide-y-0">
+            <div className="grid grid-cols-1 divide-y divide-[var(--border)] border-b border-[var(--border)] md:grid-cols-4 md:divide-x md:divide-y-0">
                 {contactLinks.map((link) => {
                     const Icon = iconMap[link.icon] || Mail;
                     return (

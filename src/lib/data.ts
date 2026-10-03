@@ -3,27 +3,35 @@ export const profileData = {
 
     education: "NIT Hamirpur",
     location: "India",
-    roles: ["Open Source Contributor", "AI Developer", "Full Stack Developer", "Backend Engineer"],
+    roles: ["AI Engineer", "Full Stack Developer", "Backend Engineer", "Growth Marketing"],
     aboutBullets: [
-        "I build polished, high-performance digital products combining full-stack engineering with AI to ship things that actually matter.",
-        "Currently deep in the intersection of generative AI and modern web architecture — building platforms, automating workflows, and learning by shipping.",
+        "I build high-performance products combining full-stack engineering with AI to ship things that actually work in productions.",
+        "Currently mapping generative AI with Agentic web architecture — building platforms, automating workflows, and learning by shipping.",
         "Open to collaborating on ambitious ideas."
     ]
 };
 
 export const contactLinks = [
-    { name: "GitHub", href: "https://github.com/SONAI-07", icon: "github" },
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/archan-banerjee-b5793521b/", icon: "linkedin" },
-    { name: "X/Twitter", href: "https://x.com/ArchanPsioppen", icon: "X" },
+
     { name: "Mail", href: "mailto:sonaibanerjee571@gmail.com", icon: "mail" },
+    { name: "X/Twitter", href: "https://x.com/ArchanPsioppen", icon: "X" },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/archan-banerjee-b5793521b/", icon: "linkedin" },
+    { name: "GitHub", href: "https://github.com/SONAI-07", icon: "github" },
 
 ];
 
 export const projects = [
     {
-        id: "nextcareer", title: "NextCareer AI", year: "2025", featured: true,
-        description: "An AI-powered career platform that lets users build professional resumes and generate personalized career roadmaps using the latest AI models.",
-        tags: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Drizzle ORM", "Neon", "Clerk", "Gemini AI", "Vercel"],
+        id: "callsense",
+        title: "CallSense AI",
+        year: "2026",
+        featured: true,
+        image: "/callsense.png",
+        description:
+            "A production-grade voice AI sales agent that holds natural, interruptible phone conversations, tracks purchase intent as it grows, and autonomously acts on it — WhatsApp brochures mid-call, deferred follow-ups when the customer isn't ready. Engineered for reality: idempotent business actions, crash-safe Redis memory, bounded retries, and Prometheus + LangSmith observability on every call.",
+        tags: ["Python", "FastAPI", "LangGraph", "Twilio", "Redis", "PostgreSQL", "WhatsApp API", "Prometheus", "LangSmith"],
+        links: { live: "#", repo: "https://github.com/SONAI-07/Voice_AI-Agent" },
+
     },
     {
         id: "fraudlens", title: "FraudLens", year: "2026", featured: true,
@@ -39,18 +47,18 @@ export const projects = [
 
 export const experience = {
     title: "AI Engineer & Distributed Backend Developer",
-    subtitle: "Independent Builder",
+    subtitle: "Builder",
     date: "2024 – Present",
     nodes: [
-        { title: "The Foundation (Locking In)", desc: "Dedicated a focused lock-in to master the modern web ecosystem: FastAPI, PostgreSQL, LLMs for backends; React for UIs." },
+        { title: "The Foundation", desc: "Dedicated a focused lock-in to master the modern web ecosystem: FastAPI, PostgreSQL, LLMs for backends; React for UIs." },
         { title: "Architecting the Stack", desc: "Scaled to production-grade tools: FastAPI & SpringBoot for auth — building optimized full-stack workflows and applications." },
         { title: "AI Internals & Automation", desc: "Deep diving into LLM core architecture and intelligent workflow orchestration using AI agents and n8n." },
         { title: "Shipping Real-World Systems", desc: "Building platforms like Voice AI and Services NearBy. Collaborating to integrate complex Python-based AI backends with polished frontends." },
     ],
     stats: [
-        { value: "5+", label: "PROJECTS SHIPPED" },
+        { value: "7+", label: "PROJECTS SHIPPED" },
         { value: "4", label: "JOURNEY PHASES" },
-        { value: "AI+Web", label: "STACK FOCUS" },
+        { value: "AI full-stack+ Agents", label: "STACK FOCUS" },
         { value: "300+", label: "GITHUB COMMITS" },
     ]
 };

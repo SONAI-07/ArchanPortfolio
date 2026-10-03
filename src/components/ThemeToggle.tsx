@@ -11,11 +11,20 @@ export function ThemeToggle() {
         return "dark";
     });
 
+    const [mounted, setMounted] = useState(false);
+
     useEffect(() => {
+        const id = requestAnimationFrame(() => setMounted(true));
+
         const sync = (e: Event) => setTheme((e as CustomEvent<Theme>).detail);
         window.addEventListener(THEME_EVENT, sync);
-        return () => window.removeEventListener(THEME_EVENT, sync);
+
+        return () => {
+            cancelAnimationFrame(id);
+            window.removeEventListener(THEME_EVENT, sync);
+        };
     }, []);
+
 
     return (
         <button
@@ -23,7 +32,7 @@ export function ThemeToggle() {
             onClick={() => toggleTheme()}
             className="grid h-9 w-9 place-items-center rounded-full border border-[var(--border)] text-[var(--ink)] transition-colors hover:bg-[var(--panel)]"
         >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            {mounted ? (theme === "dark" ? <Sun size={16} /> : <Moon size={16} />) : <span className="h-4 w-4" />}
         </button>
     );
 }
