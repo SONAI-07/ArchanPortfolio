@@ -4,8 +4,9 @@ import { Command } from "cmdk";
 import { ArrowUpRight, Copy, Hash, SunMoon } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { toggleTheme } from "@/lib/theme";
+import { scrollToId } from "@/lib/scroll";
 
-const EMAIL = "hello@yourdomain.dev"; // ← change to your real email
+const EMAIL = "sonaibanerjee571@gmail.com"; // ← change to your real email
 
 export function CommandPalette() {
     const [open, setOpen] = useState(false);
@@ -32,8 +33,7 @@ export function CommandPalette() {
         setOpen(false);
     };
 
-    const jump = (id: string) =>
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const jump = (id: string) => scrollToId(id);
 
     const copyEmail = () => {
         navigator.clipboard?.writeText(EMAIL).catch(() => {});
