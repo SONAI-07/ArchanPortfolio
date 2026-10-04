@@ -21,7 +21,7 @@ export function RotatingRole({ roles }: { roles: string[] }) {
                     animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                     exit={{ y: -10, opacity: 0, filter: "blur(4px)" }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="font-mono text-sm text-[var(--muted)] absolute inset-0"
+                    className="font-mono text-sm text-[var(--muted)] absolute inset-0 text-center"
                 >
                     {roles[index]}
                 </motion.p>

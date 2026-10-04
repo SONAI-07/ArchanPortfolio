@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { scrollToId, scrollToTop } from "@/lib/scroll";
 
 const LINKS = [
     { id: "home", label: "Home" },
@@ -34,8 +35,8 @@ export function NavLinks() {
     }, []);
 
     const jump = (id: string) => {
-        if (id === "home") window.scrollTo({ top: 0, behavior: "smooth" });
-        else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (id === "home") scrollToTop();
+        else scrollToId(id);
     };
 
     return (
