@@ -66,7 +66,7 @@ export function CommandPalette() {
                         </Command.Empty>
 
                         <Command.Group heading="NAVIGATE" className={groupCls}>
-                            {["about", "contact", "projects", "experience", "skills", "github"].map((id) => (
+                            {["about", "contact", "projects", "experience", "skills", "thoughts"].map((id) => (
                                 <Command.Item key={id} value={`go ${id}`} onSelect={run(() => jump(id))} className={itemCls}>
                                     <Hash size={14} /> {id.charAt(0).toUpperCase() + id.slice(1)}
                                 </Command.Item>

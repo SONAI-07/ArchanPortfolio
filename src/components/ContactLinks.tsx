@@ -1,3 +1,4 @@
+"use client";
 import type { ComponentType } from "react";
 import { ArrowUpRight, Mail, CalendarDays } from "lucide-react";
 import { contactLinks } from "@/lib/data";
@@ -22,25 +23,22 @@ export function ContactLinks() {
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,var(--glow),transparent_70%)]" />
                 <div className="relative">
                     <p className="micro">( the ask, after the proof )</p>
-                    <h2 className="section-title mt-4">Let&apos;s build something durable.</h2>
+                    <h2 className="section-title mt-4"> Transform your IDEA into a real Platform </h2>
                     <div className="title-underline" />
                     <p className="mx-auto mt-6 max-w-xl leading-relaxed text-[var(--ink-soft)]">
                         Open to AI engineering roles, collaborations, and conversations about voice agents,
-                        event-driven systems, and shipping AI that survives contact with reality.
+                        event-driven systems, and shipping AI that survives the realtime Production crashes.
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                         <a href={mail?.href ?? "mailto:sonaibanerjee571@gmail.com"} className="btn-pill">
                             <Mail size={15} /> Mail Me
                         </a>
-                        <a
-                            href="https://cal.com/YOUR-HANDLE/30min"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-outline"
-                        >
+
+                        <button onClick={() => window.dispatchEvent(new Event("booking:open"))} className="btn-outline">
                             <CalendarDays size={15} /> Book A Call
-                        </a>
+                        </button>
+
                     </div>
 
                     <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

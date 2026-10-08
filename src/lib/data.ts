@@ -46,7 +46,11 @@ export const projects = [
         description:
             "A full-stack Java web application built on Spring Boot — replace with your one-line pitch: what it does, for whom, and the technical differentiator (security model, caching, integrations).",
         tags: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Docker", "REST APIs"],
-
+        links: {
+            readme: "https://github.com/SONAI-07/REPO-NAME/blob/main/README.md",
+            repo: "https://github.com/SONAI-07/REPO-NAME",
+            live: "",
+        },
 
     },
     {
@@ -58,6 +62,11 @@ export const projects = [
         description:
             "Swarm of agents built for automated review & push to Prod.and serious merge conflicts escalated to devs",
         tags: ["Python","Fast API", "Evals" , "Building ..."],
+        links: {
+            readme: "https://github.com/SONAI-07/REPO-NAME-2/blob/main/README.md",
+            repo: "https://github.com/SONAI-07/REPO-NAME-2",
+            live: "",
+        },
     },
 ];
 
@@ -111,10 +120,8 @@ export const skills: { name: string; category: SkillCategory; icon: string; colo
     { name: "RAG", category: "AI / ML", icon: "TbBrain", color: "#000000" },
     { name: "PyTorch", category: "AI / ML", icon: "SiPytorch", color: "#EE4C2C" },
     { name: "Voice AI Agents", category: "AI / ML", icon: "TbMicrophone", color: "#7C3AED" },
-
     { name: "Qdrant", category: "AI / ML", icon: "SiQdrant", color: "#DC244C" },
     { name: "Hugging Face", category: "AI / ML", icon: "SiHuggingface", color: "#D97706" },
-
     { name: "Pydantic", category: "AI / ML", icon: "SiPydantic", color: "#E92067" },
     { name: "n8n", category: "AI / ML", icon: "SiN8N", color: "#EA4B71" },
     { name: "Docker", category: "DevOps", icon: "SiDocker", color: "#2496ED" },
