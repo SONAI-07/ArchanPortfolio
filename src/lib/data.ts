@@ -3,7 +3,7 @@ export const profileData = {
 
     education: "NIT Hamirpur",
     location: "India",
-    roles: ["AI Engineer", "Full Stack Developer", "Backend Engineer", "Growth Marketing"],
+    roles: ["AI Engineer", "Backend Engineer", "Growth Marketing"],
     aboutBullets: [
         "I build high-performance products combining full-stack engineering with AI to ship things that actually work in productions.",
         "Currently mapping generative AI with Agentic web architecture — building platforms, automating workflows, and learning by shipping.",
@@ -26,42 +26,68 @@ export const projects = [
         title: "CallSense AI",
         year: "2026",
         featured: true,
-        image: "/callsense.png",
+        image: "/callsense.jpg",
         description:
-            "A production-grade voice AI sales agent that holds natural, interruptible phone conversations, tracks purchase intent as it grows, and autonomously acts on it — WhatsApp brochures mid-call, deferred follow-ups when the customer isn't ready. Engineered for reality: idempotent business actions, crash-safe Redis memory, bounded retries, and Prometheus + LangSmith observability on every call.",
+            "Platform to spin up production-grade voice AI sales agent that holds natural phone conversations, " +
+            "tracks purchase intent as it grows, and executes business actions.",
         tags: ["Python", "FastAPI", "LangGraph", "Twilio", "Redis", "PostgreSQL", "WhatsApp API", "Prometheus", "LangSmith"],
-        links: { live: "#", repo: "https://github.com/SONAI-07/Voice_AI-Agent" },
+        links: {
+            readme: "https://github.com/SONAI-07/Voice_AI-Agent/blob/main/README.md",
+            repo: "https://github.com/SONAI-07/Voice_AI-Agent",
+            live: "",
+        },
+    },
+    {
+        id: "spring-app",
+        title: "Service-Provider web-App",
+        year: "2025",
+        featured: true,
+        image: "/bhaya.jpg",
+        description:
+            "A full-stack Java web application built on Spring Boot — replace with your one-line pitch: what it does, for whom, and the technical differentiator (security model, caching, integrations).",
+        tags: ["Java", "Spring Boot", "Kafka", "PostgreSQL", "Redis", "Docker", "REST APIs"],
+
 
     },
     {
-        id: "fraudlens", title: "FraudLens", year: "2026", featured: true,
-        description: "A real-time AI-powered fraud detection platform that analyzes messages, UPI IDs, QR codes, and live phone calls to protect users from scams.",
-        tags: ["Next.js 16", "React 19", "TypeScript", "Tailwind", "Supabase", "pgvector", "Gemini 2.5", "Groq", "Deepgram"],
+        id: "Agentic CI/CD",
+        title: "Autonomous Agentic CI/CD",
+        year: "2026",
+        featured: true,
+        image: "/CI:CD.jpg",
+        description:
+            "Swarm of agents built for automated review & push to Prod.and serious merge conflicts escalated to devs",
+        tags: ["Python","Fast API", "Evals" , "Building ..."],
     },
-    {
-        id: "claimkaro", title: "ClaimKaro", year: "2026", featured: false,
-        description: "Bilingual AI welfare navigator that helps low-income Indian families discover government schemes, fix paperwork errors, and track applications.",
-        tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Gemini AI", "Firebase"],
-    }
 ];
 
 export const experience = {
-    title: "AI Engineer & Distributed Backend Developer",
-    subtitle: "Builder",
-    date: "2024 – Present",
+    title: "Experience",
+    date: "Campus → Production",
+    subtitle: "three arenas, one operator mindset",
     nodes: [
-        { title: "The Foundation", desc: "Dedicated a focused lock-in to master the modern web ecosystem: FastAPI, PostgreSQL, LLMs for backends; React for UIs." },
-        { title: "Architecting the Stack", desc: "Scaled to production-grade tools: FastAPI & SpringBoot for auth — building optimized full-stack workflows and applications." },
-        { title: "AI Internals & Automation", desc: "Deep diving into LLM core architecture and intelligent workflow orchestration using AI agents and n8n." },
-        { title: "Shipping Real-World Systems", desc: "Building platforms like Voice AI and Services NearBy. Collaborating to integrate complex Python-based AI backends with polished frontends." },
+        {
+            title: "The Builder — Independent AI & Backend Engineer",
+            desc: "Ships production-grade AI systems end-to-end: CallSense AI (voice agents with idempotent business actions, crash-safe memory, and Prometheus + LangSmith observability), a Spring Boot service platform, and an autonomous agentic CI/CD currently in build. Designs by three rules: failure is expected, real-time and durable are separate lifecycles, and nothing runs unobserved.",
+        },
+        {
+            title: "The Operator — Finance & Growth Lead, Campus Scale",
+            desc: "Lead Financial Coordinator for one of the largest tech fests — owned budgets, sponsors, and procurement end-to-end.",
+        },
+        {
+            title: "The Communicator — Writing & Speaking in Public",
+            desc: "Journals system design and product journeys on Medium and has hosted and spoken on main stages since school.",
+        }
     ],
     stats: [
-        { value: "7+", label: "PROJECTS SHIPPED" },
-        { value: "4", label: "JOURNEY PHASES" },
-        { value: "AI full-stack+ Agents", label: "STACK FOCUS" },
-        { value: "300+", label: "GITHUB COMMITS" },
-    ]
+        { value: "BUILDER", label: "production AI systems" },
+        { value: "OPERATOR", label: "national-scale events" },
+        { value: "WRITER", label: "Medium & Substack" },
+        { value: "SPEAKER", label: "main-stage since school" },
+        { value: "ATHLETE", label: "track-trained discipline" },
+    ],
 };
+
 
 export type SkillCategory = "Languages" | "Backend" | "Databases" | "AI / ML" | "Frontend" | "DevOps";
 
