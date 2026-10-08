@@ -5,7 +5,7 @@ import { ContactLinks } from "@/components/ContactLinks";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { Experience } from "@/components/Experience";
 import { TechStack } from "@/components/TechStack";
-import { GithubHeatmap } from "@/components/GithubHeatmap";
+import { ThoughtsCard } from "@/components/ThoughtsCard";
 import { Footer } from "@/components/Footer";
 import { IntroCard } from "@/components/IntroCard";
 
@@ -47,7 +47,7 @@ export default function Home() {
             <Experience />
             <ContactLinks />
             <TechStack />
-            <GithubHeatmap />
+            <ThoughtsCard />
             <Footer />
         </div>
     );

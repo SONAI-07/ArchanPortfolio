@@ -17,7 +17,7 @@ export function ProjectsGrid() {
             <div className="text-center">
                 <h2 className="section-title">Projects</h2>
                 <div className="title-underline" />
-                <p className="micro mt-3">( selected work — proof over promises )</p>
+                <p className="micro mt-3">( Proof over Promises )</p>
             </div>
 
             {/* recording rows */}
@@ -53,7 +53,7 @@ export function ProjectsGrid() {
                             </div>
                         </div>
 
-                        {/* RIGHT: story + actions */}
+
                         <div className="flex flex-col justify-between gap-6 p-7 md:p-9">
                             <div className="space-y-3">
                                 <div className="flex items-center justify-between gap-4">
@@ -70,26 +70,46 @@ export function ProjectsGrid() {
                                     )}
                                 </div>
                             </div>
-
                             <div className="flex items-center gap-3">
-                                <a href="#" className="btn-pill px-5 py-2.5 text-[13px]">
+                                <a
+                                    href={project.links.readme}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-pill px-5 py-2.5 text-[13px]"
+                                >
                                     View Project <ArrowUpRight size={14} />
                                 </a>
                                 <a
-                                    href="#"
+                                    href={project.links.repo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label={`${project.title} repository`}
                                     className="grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] text-[var(--ink-soft)] transition-colors hover:border-[var(--muted)] hover:text-[var(--ink)]"
                                 >
                                     <GithubIcon size={15} />
                                 </a>
-                                <a
-                                    href="#"
-                                    aria-label={`${project.title} live site`}
-                                    className="grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] text-[var(--ink-soft)] transition-colors hover:border-[var(--muted)] hover:text-[var(--ink)]"
-                                >
-                                    <Globe size={15} />
-                                </a>
+                                {project.links.live ? (
+                                    <a
+                                        href={project.links.live}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`${project.title} live site`}
+                                        className="grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] text-[var(--ink-soft)] transition-colors hover:border-[var(--muted)] hover:text-[var(--ink)]"
+                                    >
+                                        <Globe size={15} />
+                                    </a>
+                                ) : (
+                                    <button
+                                        disabled
+                                        title="live demo deploying soon"
+                                        aria-label={`${project.title} live site — coming soon`}
+                                        className="grid h-10 w-10 cursor-not-allowed place-items-center rounded-full border border-[var(--border)] text-[var(--muted)] opacity-50"
+                                    >
+                                        <Globe size={15} />
+                                    </button>
+                                )}
                             </div>
+
                         </div>
                     </article>
                 ))}
