@@ -46,7 +46,7 @@
   --hatch:     #e9dfca;
   --ink:       #221b10;
   --ink-soft:  #4f4634;
-  --muted:     #8c7f66;
+  --muted:     #7a6c50;
   --accent:    #221b10;
   --img-filter: grayscale(1) sepia(.14) contrast(.97) brightness(1.02);
   --ok:        #2f8f4e;
@@ -74,7 +74,13 @@
 }
 
 @layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    transition: background-color .5s ease, color .5s ease;
+  }
   html, body { overflow-x: clip; }
+  body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
   html { background: var(--bg); color: var(--ink); transition: background-color .3s ease, color .3s ease; }
   body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
 
@@ -166,11 +172,13 @@
 
 @utility marquee-track {
   animation: marquee 30s linear infinite;
-  &:hover { animation-play-state: paused; }
 }
 
+@utility marquee-track-slow {
+  animation: marquee 45s linear infinite;
+}
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track-slow { animation: none; }
 }
 
 /* ---------- hero starfield ---------- */
@@ -179,3 +187,39 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-video { display: none; }
 }
+
+/* ---------- Lenis ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+section[id] { scroll-margin-top: 88px; }
+
+
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- outward-flowing dotted arrows ---------- */
+@utility flow-line {
+  display: block;
+  height: 2px;
+  background-image: linear-gradient(to right, var(--muted) 0 3px, transparent 3px 6px);
+  background-size: 6px 2px;   /* <-- the missing line: a 6px tile that repeat-x can tile */
+  background-repeat: repeat-x;
+  opacity: 0.7;
+}
+@utility flow-right { animation: flow-out-right 1.2s linear infinite; }
+@utility flow-left  { animation: flow-out-left 1.2s linear infinite; }
+
+@keyframes flow-out-right { from { background-position-x: 0; } to { background-position-x: 24px; } }
+@keyframes flow-out-left  { from { background-position-x: 0; } to { background-position-x: -24px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-left, .flow-right { animation: none; }
+}
+
+[data-theme="dark"] input, [data-theme="dark"] textarea { color-scheme: dark; }
+[data-theme="light"] input, [data-theme="light"] textarea { color-scheme: light; }
+
+

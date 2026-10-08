@@ -16,8 +16,11 @@ export function IntroCard() {
 
             <div className="grid gap-10 md:grid-cols-[1.15fr_1fr]">
                 {/* LEFT: story + capability bullets */}
-                <div className="space-y-5">
-                    <h2 className="display text-3xl md:text-4xl">Hey, I am Archan.</h2>
+                <div className="flex h-full flex-col space-y-5">
+                    <div>
+                        <h2 className="display text-3xl md:text-4xl">Hey, I am Archan.</h2>
+                        <p className="text-base mt-2">NIT HAMIRPUR . INDIA </p>
+                    </div>
                     <p className="leading-relaxed text-[var(--ink-soft)]">{profileData.aboutBullets[0]}</p>
                     <p className="leading-relaxed text-[var(--ink-soft)]">{profileData.aboutBullets[1]}</p>
                     <p className="flex items-center gap-2 font-mono text-xs text-[var(--muted)]">
@@ -25,13 +28,14 @@ export function IntroCard() {
                         {profileData.aboutBullets[2]}
                     </p>
 
-                    <ul className="space-y-3 pt-2">
+                    <ul className="grid flex-1 grid-rows-4 gap-3 pt-2">
                         {CAPABILITIES.map((role) => (
-                            <li key={role} className="flex items-center gap-3">
+                            <li
+                                key={role}
+                                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--panel)] px-5 transition-colors hover:border-[var(--muted)] hover:bg-[var(--bg-elev)]"
+                            >
                                 <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--muted)]" />
-                                <span className="text-[15px] font-medium text-[var(--ink-soft)] transition-colors hover:text-[var(--ink)]">
-                  {role}
-                </span>
+                                <span className="text-[15px] font-medium text-[var(--ink)]">{role}</span>
                             </li>
                         ))}
                     </ul>
